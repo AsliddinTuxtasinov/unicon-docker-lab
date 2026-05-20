@@ -1,0 +1,18 @@
+id: docker-lifecycle
+title: "Container lifecycle boshqarish"
+difficulty: beginner
+estimated_minutes: 15
+
+setup:
+  - "docker pull alpine:3.18 2>/dev/null || true"
+
+verify:
+  steps:
+    - type: exec
+      command: "docker run --rm alpine:3.18 echo lifecycle-ok | grep lifecycle-ok"
+      exit_code: 0
+      error_message: "Konteyner ishga tushmadi"
+    - type: exec
+      command: "docker ps -a"
+      exit_code: 0
+      error_message: "docker ps -a ishlamadi"

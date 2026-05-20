@@ -1,0 +1,18 @@
+id: docker-vm-vs-container
+title: "VM vs Container farqi"
+difficulty: beginner
+estimated_minutes: 10
+
+setup:
+  - "docker pull alpine:3.18 2>/dev/null || true"
+
+verify:
+  steps:
+    - type: exec
+      command: "docker run --rm alpine:3.18 echo container-ok | grep container-ok"
+      exit_code: 0
+      error_message: "alpine konteyner ishga tushmadi"
+    - type: exec
+      command: "docker info --format '{{.ServerVersion}}'"
+      exit_code: 0
+      error_message: "Docker daemon ishlamayapti"

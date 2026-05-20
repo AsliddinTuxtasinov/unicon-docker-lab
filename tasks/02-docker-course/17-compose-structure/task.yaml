@@ -1,0 +1,13 @@
+id: docker-compose-structure
+title: "`docker-compose.yml` strukturasi"
+difficulty: intermediate
+estimated_minutes: 20
+
+setup: []
+
+verify:
+  steps:
+    - type: exec
+      command: "docker compose version 2>/dev/null || docker-compose version"
+      exit_code: 0
+      error_message: "Docker Compose o'rnatilmagan"

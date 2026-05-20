@@ -1,0 +1,13 @@
+id: docker-installation
+title: "Docker o'rnatish"
+difficulty: beginner
+estimated_minutes: 15
+
+setup: []
+
+verify:
+  steps:
+    - type: exec
+      command: "docker version | grep 'Version'"
+      exit_code: 0
+      error_message: "Docker o'rnatilmagan yoki ishlamayapti"

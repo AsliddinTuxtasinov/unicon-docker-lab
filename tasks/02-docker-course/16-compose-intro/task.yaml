@@ -1,0 +1,13 @@
+id: docker-compose-intro
+title: "Docker Compose kirish"
+difficulty: intermediate
+estimated_minutes: 15
+
+setup: []
+
+verify:
+  steps:
+    - type: exec
+      command: "docker compose version 2>/dev/null || docker-compose version"
+      exit_code: 0
+      error_message: "Docker Compose o'rnatilmagan"

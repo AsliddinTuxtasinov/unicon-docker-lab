@@ -1,0 +1,18 @@
+id: docker-images
+title: "Docker image tushunchasi"
+difficulty: beginner
+estimated_minutes: 10
+
+setup:
+  - "docker pull alpine:3.18 2>/dev/null || true"
+
+verify:
+  steps:
+    - type: exec
+      command: "docker images | grep alpine"
+      exit_code: 0
+      error_message: "alpine image topilmadi"
+    - type: exec
+      command: "docker images --format '{{.Repository}}:{{.Tag}}' | grep alpine:3.18"
+      exit_code: 0
+      error_message: "alpine:3.18 image yuklanmagan"

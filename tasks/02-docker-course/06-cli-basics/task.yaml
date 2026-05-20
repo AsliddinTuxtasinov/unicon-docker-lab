@@ -1,0 +1,17 @@
+id: docker-cli-basics
+title: "Docker CLI asoslari"
+difficulty: beginner
+estimated_minutes: 10
+
+setup: []
+
+verify:
+  steps:
+    - type: exec
+      command: "docker --version"
+      exit_code: 0
+      error_message: "docker --version ishlamadi"
+    - type: exec
+      command: "docker ps"
+      exit_code: 0
+      error_message: "docker ps ishlamadi"

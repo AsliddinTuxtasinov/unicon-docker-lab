@@ -1,0 +1,18 @@
+id: docker-inspect-logs
+title: "Container inspect va logs"
+difficulty: beginner
+estimated_minutes: 15
+
+setup:
+  - "docker pull alpine:3.18 2>/dev/null || true"
+
+verify:
+  steps:
+    - type: exec
+      command: "docker run --rm alpine:3.18 echo log-test | grep log-test"
+      exit_code: 0
+      error_message: "Konteyner log chiqarmadi"
+    - type: exec
+      command: "docker inspect --help | grep 'Usage'"
+      exit_code: 0
+      error_message: "docker inspect ishlamadi"

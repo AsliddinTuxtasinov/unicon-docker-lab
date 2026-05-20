@@ -1,0 +1,19 @@
+id: docker-real-project-setup
+title: "Real project setup (DB + backend + redis)"
+difficulty: intermediate
+estimated_minutes: 30
+
+setup:
+  - "docker pull postgres:15-alpine 2>/dev/null || true"
+  - "docker pull redis:7-alpine 2>/dev/null || true"
+
+verify:
+  steps:
+    - type: exec
+      command: "docker images | grep postgres"
+      exit_code: 0
+      error_message: "postgres image topilmadi"
+    - type: exec
+      command: "docker images | grep redis"
+      exit_code: 0
+      error_message: "redis image topilmadi"

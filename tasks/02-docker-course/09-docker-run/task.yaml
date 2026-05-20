@@ -1,0 +1,14 @@
+id: docker-run
+title: "`docker run` komandasi"
+difficulty: beginner
+estimated_minutes: 15
+
+setup:
+  - "docker pull alpine:3.18 2>/dev/null || true"
+
+verify:
+  steps:
+    - type: exec
+      command: "docker run --rm -e TESTVAR=hello alpine:3.18 sh -c 'echo $TESTVAR' | grep hello"
+      exit_code: 0
+      error_message: "Environment variable uzatilmadi"

@@ -1,0 +1,18 @@
+id: docker-build-image
+title: "Custom image build qilish"
+difficulty: intermediate
+estimated_minutes: 20
+
+setup:
+  - "docker pull alpine:3.18 2>/dev/null || true"
+
+verify:
+  steps:
+    - type: exec
+      command: "docker build --help | grep 'Usage'"
+      exit_code: 0
+      error_message: "docker build ishlamadi"
+    - type: exec
+      command: "docker images"
+      exit_code: 0
+      error_message: "docker images ishlamadi"

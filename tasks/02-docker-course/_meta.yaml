@@ -1,0 +1,23 @@
+id: docker-course
+order: 2
+tasks:
+  - 01-intro
+  - 02-vm-vs-container
+  - 03-isolation
+  - 04-architecture
+  - 05-installation
+  - 06-cli-basics
+  - 07-images
+  - 08-lifecycle
+  - 09-docker-run
+  - 10-inspect-logs
+  - 11-images-management
+  - 12-dockerfile-basics
+  - 13-build-image
+  - 14-volumes
+  - 15-networks
+  - 16-compose-intro
+  - 17-compose-structure
+  - 18-real-project-setup
+  - 19-env-secrets
+  - 20-logging-debugging

@@ -1,0 +1,17 @@
+id: docker-networks
+title: "Docker networks va bridge"
+difficulty: intermediate
+estimated_minutes: 20
+
+setup: []
+
+verify:
+  steps:
+    - type: exec
+      command: "docker network ls"
+      exit_code: 0
+      error_message: "docker network ls ishlamadi"
+    - type: exec
+      command: "docker network ls | grep bridge"
+      exit_code: 0
+      error_message: "Default bridge network topilmadi"

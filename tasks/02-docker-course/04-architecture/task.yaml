@@ -1,0 +1,18 @@
+id: docker-architecture
+title: "Docker arxitekturasi"
+difficulty: beginner
+estimated_minutes: 10
+
+setup:
+  - "docker pull busybox:1.36 2>/dev/null || true"
+
+verify:
+  steps:
+    - type: exec
+      command: "docker version --format '{{.Client.Version}}'"
+      exit_code: 0
+      error_message: "Docker client versiyasi olinmadi"
+    - type: exec
+      command: "docker info --format '{{.ServerVersion}}'"
+      exit_code: 0
+      error_message: "Docker daemon versiyasi olinmadi"

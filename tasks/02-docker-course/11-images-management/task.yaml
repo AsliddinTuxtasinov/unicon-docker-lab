@@ -1,0 +1,18 @@
+id: docker-images-management
+title: "Docker images bilan ishlash"
+difficulty: intermediate
+estimated_minutes: 15
+
+setup:
+  - "docker pull busybox:1.36 2>/dev/null || true"
+
+verify:
+  steps:
+    - type: exec
+      command: "docker images | grep busybox"
+      exit_code: 0
+      error_message: "busybox image topilmadi"
+    - type: exec
+      command: "docker images"
+      exit_code: 0
+      error_message: "docker images ishlamadi"

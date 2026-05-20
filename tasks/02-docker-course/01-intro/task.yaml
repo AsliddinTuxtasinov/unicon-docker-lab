@@ -1,0 +1,14 @@
+id: docker-course-intro
+title: "Docker: nima va nima uchun"
+difficulty: beginner
+estimated_minutes: 10
+
+setup:
+  - "docker pull hello-world 2>/dev/null || true"
+
+verify:
+  steps:
+    - type: exec
+      command: "docker run --rm hello-world 2>&1 | grep 'Hello from Docker'"
+      exit_code: 0
+      error_message: "hello-world konteyner ishlatilmagan"
