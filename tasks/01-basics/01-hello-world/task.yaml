@@ -1,0 +1,18 @@
+id: docker-run-hello-world
+title: "Hello World konteyner ishga tushir"
+difficulty: beginner
+estimated_minutes: 5
+
+setup:
+  - "docker pull hello-world 2>/dev/null || true"
+
+verify:
+  steps:
+    - type: exec
+      command: "docker images | grep hello-world"
+      exit_code: 0
+      error_message: "hello-world image topilmadi"
+    - type: exec
+      command: "docker ps -a | grep hello-world"
+      exit_code: 0
+      error_message: "hello-world container ishlatilmagan"

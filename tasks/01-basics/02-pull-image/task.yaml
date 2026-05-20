@@ -1,0 +1,13 @@
+id: docker-pull-nginx
+title: "nginx image ni yuklab ol"
+difficulty: beginner
+estimated_minutes: 5
+
+setup: []
+
+verify:
+  steps:
+    - type: exec
+      command: "docker images | grep nginx"
+      exit_code: 0
+      error_message: "nginx image topilmadi — 'docker pull nginx' buyrug'ini ishlatib ko'ring"

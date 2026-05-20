@@ -1,0 +1,5 @@
+id: basics
+order: 1
+tasks:
+  - 01-hello-world
+  - 02-pull-image
