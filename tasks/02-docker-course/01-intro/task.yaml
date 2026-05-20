@@ -1,5 +1,6 @@
 id: docker-course-intro
 title: "Docker: nima va nima uchun"
+description: "Terminalda `docker run hello-world` buyrug'ini ishlatib, Docker'ning birinchi konteynerni muvaffaqiyatli ishga tushirishini ko'ring."
 difficulty: beginner
 estimated_minutes: 10
 
@@ -9,6 +10,6 @@ setup:
 verify:
   steps:
     - type: exec
-      command: "docker run --rm hello-world 2>&1 | grep 'Hello from Docker'"
+      command: "docker ps -a --format '{{.Image}}' | grep -x 'hello-world'"
       exit_code: 0
-      error_message: "hello-world konteyner ishlatilmagan"
+      error_message: "hello-world konteyner ishlatilmagan. 'docker run hello-world' buyrug'ini bajaring"

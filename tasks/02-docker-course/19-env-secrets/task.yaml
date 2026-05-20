@@ -1,5 +1,6 @@
 id: docker-env-secrets
 title: "Environment variables va secrets"
+description: "1) `/tmp/myapp/.env` faylida `APP_SECRET=my-secret` qatorini yarating. 2) `docker run --name env-test -e APP_SECRET=my-secret alpine:3.18 sh -c 'echo $APP_SECRET'` bilan env variable konteynerga uzatilishini ko'ring."
 difficulty: intermediate
 estimated_minutes: 20
 
@@ -9,6 +10,10 @@ setup:
 verify:
   steps:
     - type: exec
-      command: "docker run --rm -e SECRET_KEY=test-value alpine:3.18 sh -c 'echo $SECRET_KEY' | grep test-value"
+      command: "test -f /tmp/myapp/.env && grep 'APP_SECRET' /tmp/myapp/.env"
       exit_code: 0
-      error_message: "Environment variable konteynerga uzatilmadi"
+      error_message: "/tmp/myapp/.env topilmadi yoki APP_SECRET yo'q. 'mkdir -p /tmp/myapp && echo APP_SECRET=my-secret > /tmp/myapp/.env' bajaring"
+    - type: exec
+      command: "docker ps -a --filter name=env-test --format '{{.Names}}' | grep env-test"
+      exit_code: 0
+      error_message: "env-test konteyner topilmadi. 'docker run --name env-test -e APP_SECRET=my-secret alpine:3.18 sh -c \"echo \\$APP_SECRET\"' bajaring"

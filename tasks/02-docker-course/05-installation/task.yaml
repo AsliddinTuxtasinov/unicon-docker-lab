@@ -1,5 +1,6 @@
 id: docker-installation
 title: "Docker o'rnatish"
+description: "`docker version` buyrug'ini ishlatib Docker to'g'ri o'rnatilganini va daemon ishlayotganini tekshiring."
 difficulty: beginner
 estimated_minutes: 15
 

@@ -1,18 +1,14 @@
 id: docker-volumes
 title: "Docker volumes va persistence"
+description: "`docker volume create mydata` buyrug'i bilan nomlangan volume yarating. Volume — konteyner o'chirilganda ham ma'lumotlar saqlanib qoladigan maxsus saqlash joyi."
 difficulty: intermediate
 estimated_minutes: 20
 
-setup:
-  - "docker pull alpine:3.18 2>/dev/null || true"
+setup: []
 
 verify:
   steps:
     - type: exec
-      command: "docker volume ls"
+      command: "docker volume ls --format '{{.Name}}' | grep -x 'mydata'"
       exit_code: 0
-      error_message: "docker volume ls ishlamadi"
-    - type: exec
-      command: "docker run --rm -v /tmp:/data alpine:3.18 sh -c 'echo vol-test > /data/vol-verify.txt && cat /data/vol-verify.txt' | grep vol-test"
-      exit_code: 0
-      error_message: "Volume mount ishlamadi"
+      error_message: "mydata volume topilmadi. 'docker volume create mydata' bajaring"

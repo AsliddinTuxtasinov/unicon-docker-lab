@@ -1,5 +1,6 @@
 id: docker-real-project-setup
 title: "Real project setup (DB + backend + redis)"
+description: "`/tmp/myproject/docker-compose.yml` faylida postgres va redis servicelarini o'z ichiga olgan to'liq loyiha compose faylini yarating. Bu real backend loyihalarda ishlatiladigan standart arxitektura."
 difficulty: intermediate
 estimated_minutes: 30
 
@@ -10,10 +11,14 @@ setup:
 verify:
   steps:
     - type: exec
-      command: "docker images | grep postgres"
+      command: "test -f /tmp/myproject/docker-compose.yml"
       exit_code: 0
-      error_message: "postgres image topilmadi"
+      error_message: "/tmp/myproject/docker-compose.yml topilmadi. mkdir -p /tmp/myproject va docker-compose.yml yarating"
     - type: exec
-      command: "docker images | grep redis"
+      command: "grep 'postgres' /tmp/myproject/docker-compose.yml"
       exit_code: 0
-      error_message: "redis image topilmadi"
+      error_message: "docker-compose.yml da postgres service yo'q"
+    - type: exec
+      command: "grep 'redis' /tmp/myproject/docker-compose.yml"
+      exit_code: 0
+      error_message: "docker-compose.yml da redis service yo'q"

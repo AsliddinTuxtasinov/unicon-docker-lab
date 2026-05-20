@@ -1,18 +1,18 @@
 id: docker-architecture
 title: "Docker arxitekturasi"
+description: "`docker info > /tmp/docker-arch.txt` buyrug'ini ishlatib Docker daemon ma'lumotlarini faylga saqlang, so'ng `docker version` bilan Client va Server versiyalarini tekshiring."
 difficulty: beginner
 estimated_minutes: 10
 
-setup:
-  - "docker pull busybox:1.36 2>/dev/null || true"
+setup: []
 
 verify:
   steps:
     - type: exec
       command: "docker version --format '{{.Client.Version}}'"
       exit_code: 0
-      error_message: "Docker client versiyasi olinmadi"
+      error_message: "docker version ishlamadi"
     - type: exec
-      command: "docker info --format '{{.ServerVersion}}'"
+      command: "test -f /tmp/docker-arch.txt && grep -i 'server version' /tmp/docker-arch.txt"
       exit_code: 0
-      error_message: "Docker daemon versiyasi olinmadi"
+      error_message: "'docker info > /tmp/docker-arch.txt' bajaring"

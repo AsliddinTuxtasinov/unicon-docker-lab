@@ -1,5 +1,6 @@
 id: docker-isolation
 title: "Isolation konsepti"
+description: "`docker run --name isolation-demo alpine:3.18 sh -c 'cat /proc/1/comm'` buyrug'ini ishlatib, konteyner ichida PID 1 jarayoni host sistemasidan izolyatsiyalanganini ko'ring."
 difficulty: intermediate
 estimated_minutes: 15
 
@@ -9,6 +10,6 @@ setup:
 verify:
   steps:
     - type: exec
-      command: "docker run --rm alpine:3.18 sh -c 'cat /proc/1/comm'"
+      command: "docker ps -a --filter name=isolation-demo --format '{{.Names}}' | grep isolation-demo"
       exit_code: 0
-      error_message: "Konteyner process namespace tekshiruvi muvaffaqiyatsiz"
+      error_message: "isolation-demo konteyner topilmadi. 'docker run --name isolation-demo alpine:3.18 sh -c \"cat /proc/1/comm\"' bajaring"

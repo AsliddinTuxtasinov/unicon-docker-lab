@@ -1,5 +1,6 @@
 id: docker-images-management
 title: "Docker images bilan ishlash"
+description: "`docker tag busybox:1.36 mybox:latest` buyrug'i bilan mavjud imageni qayta nomlang, so'ng `docker images` bilan yangi tag paydo bo'lganini tasdiqlang."
 difficulty: intermediate
 estimated_minutes: 15
 
@@ -9,10 +10,6 @@ setup:
 verify:
   steps:
     - type: exec
-      command: "docker images | grep busybox"
+      command: "docker images --format '{{.Repository}}:{{.Tag}}' | grep -x 'mybox:latest'"
       exit_code: 0
-      error_message: "busybox image topilmadi"
-    - type: exec
-      command: "docker images"
-      exit_code: 0
-      error_message: "docker images ishlamadi"
+      error_message: "mybox:latest image topilmadi. 'docker tag busybox:1.36 mybox:latest' bajaring"

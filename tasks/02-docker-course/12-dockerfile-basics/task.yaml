@@ -1,5 +1,6 @@
 id: docker-dockerfile-basics
 title: "Dockerfile basics"
+description: "`mkdir -p /tmp/myapp` papka yarating va ichida `FROM alpine:3.18` qatoridan boshlanadigan `Dockerfile` fayl yarating. Dockerfile — image qurish uchun ko'rsatmalar to'plami."
 difficulty: intermediate
 estimated_minutes: 20
 
@@ -9,6 +10,6 @@ setup:
 verify:
   steps:
     - type: exec
-      command: "docker build --help | grep 'Usage'"
+      command: "test -f /tmp/myapp/Dockerfile && grep -i '^FROM' /tmp/myapp/Dockerfile"
       exit_code: 0
-      error_message: "docker build ishlamadi"
+      error_message: "/tmp/myapp/Dockerfile topilmadi yoki FROM yo'q. 'mkdir -p /tmp/myapp && echo \"FROM alpine:3.18\" > /tmp/myapp/Dockerfile' bajaring"

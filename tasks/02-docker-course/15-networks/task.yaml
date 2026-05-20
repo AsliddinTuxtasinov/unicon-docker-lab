@@ -1,5 +1,6 @@
 id: docker-networks
 title: "Docker networks va bridge"
+description: "`docker network create mynet` buyrug'i bilan maxsus bridge network yarating. Docker network — konteynerlarga bir-biri bilan muloqot qilish imkonini beradi."
 difficulty: intermediate
 estimated_minutes: 20
 
@@ -8,10 +9,6 @@ setup: []
 verify:
   steps:
     - type: exec
-      command: "docker network ls"
+      command: "docker network ls --format '{{.Name}}' | grep -x 'mynet'"
       exit_code: 0
-      error_message: "docker network ls ishlamadi"
-    - type: exec
-      command: "docker network ls | grep bridge"
-      exit_code: 0
-      error_message: "Default bridge network topilmadi"
+      error_message: "mynet network topilmadi. 'docker network create mynet' bajaring"

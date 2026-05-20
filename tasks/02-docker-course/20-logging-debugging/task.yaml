@@ -1,5 +1,6 @@
 id: docker-logging-debugging
 title: "Logs va debugging, best practices"
+description: "`docker run --name debug-test alpine:3.18 sh -c 'echo debug-message'` bilan konteyner yarating, so'ng `docker logs debug-test` bilan loglarni o'qing va `docker inspect debug-test` bilan konteyner holatini tekshiring."
 difficulty: intermediate
 estimated_minutes: 20
 
@@ -9,10 +10,10 @@ setup:
 verify:
   steps:
     - type: exec
-      command: "docker run --rm alpine:3.18 echo debug-test | grep debug-test"
+      command: "docker ps -a --filter name=debug-test --format '{{.Names}}' | grep debug-test"
       exit_code: 0
-      error_message: "Konteyner log chiqarmadi"
+      error_message: "debug-test konteyner topilmadi. 'docker run --name debug-test alpine:3.18 sh -c \"echo debug-message\"' bajaring"
     - type: exec
-      command: "docker logs --help | grep 'Usage'"
+      command: "docker logs debug-test 2>&1 | grep debug-message"
       exit_code: 0
-      error_message: "docker logs ishlamadi"
+      error_message: "debug-test logida 'debug-message' topilmadi"

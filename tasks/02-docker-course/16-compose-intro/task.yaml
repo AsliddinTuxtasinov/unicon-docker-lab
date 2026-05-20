@@ -1,5 +1,6 @@
 id: docker-compose-intro
 title: "Docker Compose kirish"
+description: "`mkdir -p /tmp/compose-demo` papka yarating va ichida `services:` bo'limini o'z ichiga olgan `docker-compose.yml` fayl yarating. Docker Compose — bir nechta konteynerni birgalikda boshqarish vositasi."
 difficulty: intermediate
 estimated_minutes: 15
 
@@ -11,3 +12,7 @@ verify:
       command: "docker compose version 2>/dev/null || docker-compose version"
       exit_code: 0
       error_message: "Docker Compose o'rnatilmagan"
+    - type: exec
+      command: "test -f /tmp/compose-demo/docker-compose.yml && grep -i 'services' /tmp/compose-demo/docker-compose.yml"
+      exit_code: 0
+      error_message: "/tmp/compose-demo/docker-compose.yml topilmadi yoki 'services' yo'q"

@@ -1,5 +1,6 @@
 id: docker-compose-structure
 title: "`docker-compose.yml` strukturasi"
+description: "`/tmp/myapp/docker-compose.yml` faylida kamida bitta `image:` ko'rsatilgan service bo'lgan to'liq compose fayl yarating. Fayl `services:`, `image:` va `ports:` bo'limlarini o'z ichiga olsin."
 difficulty: intermediate
 estimated_minutes: 20
 
@@ -8,6 +9,10 @@ setup: []
 verify:
   steps:
     - type: exec
-      command: "docker compose version 2>/dev/null || docker-compose version"
+      command: "test -f /tmp/myapp/docker-compose.yml && grep -i 'services' /tmp/myapp/docker-compose.yml"
       exit_code: 0
-      error_message: "Docker Compose o'rnatilmagan"
+      error_message: "/tmp/myapp/docker-compose.yml topilmadi yoki 'services' yo'q. mkdir -p /tmp/myapp va docker-compose.yml yarating"
+    - type: exec
+      command: "grep -q 'image:' /tmp/myapp/docker-compose.yml"
+      exit_code: 0
+      error_message: "docker-compose.yml da kamida bitta 'image:' bo'lishi kerak"

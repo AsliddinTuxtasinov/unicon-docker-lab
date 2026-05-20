@@ -1,5 +1,6 @@
 id: docker-build-image
 title: "Custom image build qilish"
+description: "/tmp/myapp/ papkasida `FROM alpine:3.18\nRUN echo built > /built.txt` mazmunli Dockerfile yarating va `docker build -t my-custom-image /tmp/myapp/` bilan o'z imageingizni qurib oling."
 difficulty: intermediate
 estimated_minutes: 20
 
@@ -9,10 +10,6 @@ setup:
 verify:
   steps:
     - type: exec
-      command: "docker build --help | grep 'Usage'"
+      command: "docker images --format '{{.Repository}}' | grep -x 'my-custom-image'"
       exit_code: 0
-      error_message: "docker build ishlamadi"
-    - type: exec
-      command: "docker images"
-      exit_code: 0
-      error_message: "docker images ishlamadi"
+      error_message: "my-custom-image topilmadi. Dockerfile yaratib 'docker build -t my-custom-image /tmp/myapp/' bajaring"

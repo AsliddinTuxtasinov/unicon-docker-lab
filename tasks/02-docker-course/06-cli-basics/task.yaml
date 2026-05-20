@@ -1,17 +1,19 @@
 id: docker-cli-basics
 title: "Docker CLI asoslari"
+description: "`docker run --name cli-test alpine:3.18 echo hello` buyrug'ini ishlatib Docker CLI ning asosiy sintaksisini o'rganing: image nomi, konteyner nomi va bajariladigan buyruq."
 difficulty: beginner
 estimated_minutes: 10
 
-setup: []
+setup:
+  - "docker pull alpine:3.18 2>/dev/null || true"
 
 verify:
   steps:
     - type: exec
       command: "docker --version"
       exit_code: 0
-      error_message: "docker --version ishlamadi"
+      error_message: "docker o'rnatilmagan"
     - type: exec
-      command: "docker ps"
+      command: "docker ps -a --filter name=cli-test --format '{{.Names}}' | grep cli-test"
       exit_code: 0
-      error_message: "docker ps ishlamadi"
+      error_message: "'docker run --name cli-test alpine:3.18 echo hello' bajaring"

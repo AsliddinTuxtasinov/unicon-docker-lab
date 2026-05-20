@@ -1,5 +1,6 @@
 id: docker-lifecycle
 title: "Container lifecycle boshqarish"
+description: "`docker run -d --name lifecycle-test alpine:3.18 sleep 60` bilan konteyner yarating, so'ng `docker stop lifecycle-test` bilan to'xtating. Konteyner holatlari: created → running → exited."
 difficulty: beginner
 estimated_minutes: 15
 
@@ -9,10 +10,6 @@ setup:
 verify:
   steps:
     - type: exec
-      command: "docker run --rm alpine:3.18 echo lifecycle-ok | grep lifecycle-ok"
+      command: "docker ps -a --filter name=lifecycle-test --format '{{.Status}}' | grep -i exited"
       exit_code: 0
-      error_message: "Konteyner ishga tushmadi"
-    - type: exec
-      command: "docker ps -a"
-      exit_code: 0
-      error_message: "docker ps -a ishlamadi"
+      error_message: "lifecycle-test konteyner topilmadi yoki to'xtatilmagan. 'docker run -d --name lifecycle-test alpine:3.18 sleep 60' keyin 'docker stop lifecycle-test' bajaring"

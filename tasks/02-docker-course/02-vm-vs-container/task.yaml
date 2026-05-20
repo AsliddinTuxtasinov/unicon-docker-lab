@@ -1,5 +1,6 @@
 id: docker-vm-vs-container
 title: "VM vs Container farqi"
+description: "`docker run --name vm-compare alpine:3.18 echo done` buyrug'ini ishlatib, konteyner qanday qilib virtual mashinadan farq qilishini ko'ring — konteyner soniyalar ichida ishga tushadi."
 difficulty: beginner
 estimated_minutes: 10
 
@@ -9,10 +10,6 @@ setup:
 verify:
   steps:
     - type: exec
-      command: "docker run --rm alpine:3.18 echo container-ok | grep container-ok"
+      command: "docker ps -a --filter name=vm-compare --format '{{.Names}}' | grep vm-compare"
       exit_code: 0
-      error_message: "alpine konteyner ishga tushmadi"
-    - type: exec
-      command: "docker info --format '{{.ServerVersion}}'"
-      exit_code: 0
-      error_message: "Docker daemon ishlamayapti"
+      error_message: "vm-compare konteyner topilmadi. 'docker run --name vm-compare alpine:3.18 echo done' bajaring"
